@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaEnvelope, FaFileDownload } from 'react-icons/fa';
-import { socialLinks, personalInfo } from '../portfolio';
+import { socialLinks, personalInfo, contactData } from '../portfolio';
 
 const socialItems = [
   { icon: FaGithub, link: socialLinks.github, label: 'GitHub', color: '#fff' },
@@ -21,15 +21,39 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate network request
-    setTimeout(() => {
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert(contactData.successMessage);
+        setForm({ name: '', email: '', message: '' });
+      } else {
+        alert(contactData.errorMessage);
+      }
+    } catch (error) {
+      console.error(error);
+      alert(contactData.errorMessage);
+    } finally {
       setLoading(false);
-      alert('Thank you. I will get back to you as soon as possible.');
-      setForm({ name: '', email: '', message: '' });
-    }, 2000);
+    }
   };
 
   return (
@@ -38,25 +62,25 @@ const Contact = () => {
         
         {/* Contact Form */}
         <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="flex-[0.75] glass-effect p-8 rounded-2xl w-full max-w-2xl">
-          <p className="text-secondary text-[18px] uppercase tracking-wider">Get in touch</p>
-          <h3 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Contact.</h3>
+          <p className="text-secondary text-[18px] uppercase tracking-wider">{contactData.sectionLabel}</p>
+          <h3 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">{contactData.sectionTitle}</h3>
 
           <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
             <label className="flex flex-col">
-              <span className="text-white font-medium mb-4">Your Name</span>
-              <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="What's your good name?" className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-[#00f2fe] transition-all" required />
+              <span className="text-white font-medium mb-4">{contactData.formLabels.name}</span>
+              <input type="text" name="name" value={form.name} onChange={handleChange} placeholder={contactData.formPlaceholders.name} className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-[#00f2fe] transition-all" required />
             </label>
             <label className="flex flex-col">
-              <span className="text-white font-medium mb-4">Your Email</span>
-              <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="What's your web address?" className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-[#00f2fe] transition-all" required />
+              <span className="text-white font-medium mb-4">{contactData.formLabels.email}</span>
+              <input type="email" name="email" value={form.email} onChange={handleChange} placeholder={contactData.formPlaceholders.email} className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-[#00f2fe] transition-all" required />
             </label>
             <label className="flex flex-col">
-              <span className="text-white font-medium mb-4">Your Message</span>
-              <textarea rows={7} name="message" value={form.message} onChange={handleChange} placeholder="What you want to say?" className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-[#00f2fe] transition-all" required />
+              <span className="text-white font-medium mb-4">{contactData.formLabels.message}</span>
+              <textarea rows={7} name="message" value={form.message} onChange={handleChange} placeholder={contactData.formPlaceholders.message} className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium focus:ring-2 focus:ring-[#00f2fe] transition-all" required />
             </label>
 
             <button type="submit" className="bg-[#00f2fe]/20 hover:bg-[#00f2fe]/40 border border-[#00f2fe] py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary transition-all">
-              {loading ? "Sending..." : "Send Message"}
+              {loading ? contactData.loadingText : contactData.buttonText}
             </button>
           </form>
         </motion.div>
@@ -84,8 +108,8 @@ const Contact = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-[#00f2fe] to-[#915eff] rounded-full blur-[30px] opacity-40"></div>
             
             <img
-              src="/images/avatar2.jpg"
-              alt="Lavish Pandey"
+              src={personalInfo.avatarImage}
+              alt={`${personalInfo.firstName} ${personalInfo.lastName}`}
               className="w-full h-full object-cover rounded-full border-4 border-[#00f2fe]/40 shadow-[0_0_20px_rgba(0,242,254,0.3)] z-10 relative"
             />
           </motion.div>

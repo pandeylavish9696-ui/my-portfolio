@@ -53,8 +53,8 @@ const Hero = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#915eff] to-[#00f2fe] rounded-2xl blur-[40px] opacity-40"></div>
           
           <img
-            src="/images/avatar2.jpg"
-            alt="Lavish Pandey Avatar"
+            src={personalInfo.avatarImage}
+            alt={`${personalInfo.firstName} ${personalInfo.lastName} Avatar`}
             className="w-full h-full object-cover rounded-2xl border-2 border-[#00f2fe]/30 shadow-card z-10 relative"
           />
         </motion.div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { experiences } from '../portfolio';
+import { experiences, experienceData } from '../portfolio';
 
 const ExperienceCard = ({ experience, index }) => {
   return (
@@ -33,8 +33,8 @@ const Experience = () => {
   return (
     <section id="experience" className="max-w-7xl mx-auto px-6 sm:px-16 py-20 relative">
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
-        <p className="text-secondary text-[18px] uppercase tracking-wider text-center">What I have done so far</p>
-        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">Work Experience.</h2>
+        <p className="text-secondary text-[18px] uppercase tracking-wider text-center">{experienceData.sectionLabel}</p>
+        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px] text-center">{experienceData.sectionTitle}</h2>
       </motion.div>
 
       <div className="mt-20 flex flex-col relative">

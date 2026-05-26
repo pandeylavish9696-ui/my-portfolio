@@ -6,8 +6,8 @@ const About = () => {
   return (
     <section id="about" className="max-w-7xl mx-auto px-6 sm:px-16 py-20">
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
-        <p className="text-secondary text-[18px] uppercase tracking-wider">Introduction</p>
-        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">Overview.</h2>
+        <p className="text-secondary text-[18px] uppercase tracking-wider">{aboutData.sectionLabel}</p>
+        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">{aboutData.sectionTitle}</h2>
       </motion.div>
 
       <motion.p 

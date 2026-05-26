@@ -9,7 +9,8 @@ export const personalInfo = {
   lastName: "Pandey",
   tagline: "B.Tech Student | iOS Developer | Full Stack Developer",
   subtitle: "Building immersive digital experiences.",
-  resumeLink: "file:///C:/Users/Lavish%20Pandey/Downloads/lavish%20(1).pdf", // Link to your resume (Google Drive, Dropbox, etc.)
+  resumeLink: "https://drive.google.com/file/d/1UcmV8Uxyq3KVW1LQSp9V2e2p-3OcEdPe/view?usp=sharing", // Link to your resume (Google Drive, Dropbox, etc.)
+  avatarImage: "/images/avatar2.jpg",   // Main avatar used in Hero & Contact
 };
 
 // ─── Social Links ────────────────────────────────────────────────────
@@ -26,11 +27,18 @@ export const navLinks = ["About", "Skills", "Projects", "Experience", "Contact"]
 
 // ─── About Section ───────────────────────────────────────────────────
 export const aboutData = {
+  sectionLabel: "Introduction",
+  sectionTitle: "Overview.",
   bio: `I'm a driven B.Tech (Second Year) student at Lloyd Institute with a passion for software development, artificial intelligence, and interactive 3D web experiences. With skills in C++, Python, Java, React, and Three.js, I strive to build intuitive, scalable, and visually stunning applications that bridge the gap between design and robust engineering.`,
   cards: ["Passion for Coding", "Interactive Design", "Continuous Learner"],
 };
 
 // ─── Skills Section ──────────────────────────────────────────────────
+export const skillsData = {
+  sectionLabel: "What I know",
+  sectionTitle: "My Skills.",
+};
+
 export const skills = [
   { name: "C / C++", proficiency: "90%" },
   { name: "Python", proficiency: "95%" },
@@ -42,6 +50,13 @@ export const skills = [
 ];
 
 // ─── Projects Section ────────────────────────────────────────────────
+export const projectsData = {
+  sectionLabel: "My Work",
+  sectionTitle: "Projects.",
+  sectionDescription:
+    "The following projects showcase my skills and experience through real-world examples of my work. Each project is briefly described with links to code repositories and live demos. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.",
+};
+
 export const projects = [
   {
     name: "3D Portfolio",
@@ -85,6 +100,11 @@ export const projects = [
 ];
 
 // ─── Experience / Education Section ──────────────────────────────────
+export const experienceData = {
+  sectionLabel: "What I have done so far",
+  sectionTitle: "Work Experience.",
+};
+
 export const experiences = [
   {
     title: "B.Tech Computer Science",
@@ -107,3 +127,23 @@ export const experiences = [
     ],
   },
 ];
+
+// ─── Contact Section ─────────────────────────────────────────────────
+export const contactData = {
+  sectionLabel: "Get in touch",
+  sectionTitle: "Contact.",
+  formLabels: {
+    name: "Your Name",
+    email: "Your Email",
+    message: "Your Message",
+  },
+  formPlaceholders: {
+    name: "What's your good name?",
+    email: "What's your web address?",
+    message: "What you want to say?",
+  },
+  buttonText: "Send Message",
+  loadingText: "Sending...",
+  successMessage: "Thank you. I will get back to you as soon as possible.",
+  errorMessage: "Ahh, something went wrong. Please try again.",
+};

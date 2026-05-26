@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { skills } from '../portfolio';
+import { skills, skillsData } from '../portfolio';
 
 const Skills = () => {
   return (
     <section id="skills" className="max-w-7xl mx-auto px-6 sm:px-16 py-20">
       <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
-        <p className="text-secondary text-[18px] uppercase tracking-wider">What I know</p>
-        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">My Skills.</h2>
+        <p className="text-secondary text-[18px] uppercase tracking-wider">{skillsData.sectionLabel}</p>
+        <h2 className="text-white font-black md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]">{skillsData.sectionTitle}</h2>
       </motion.div>
 
       <div className="mt-10 flex flex-wrap gap-6 justify-center">
